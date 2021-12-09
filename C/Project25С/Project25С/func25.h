@@ -16,40 +16,40 @@
 
 //ñòðóêòóðà ç ïàðàìåòðàìè
 
-typedef struct Random2D {
+typedef struct Random2 {
 
     unsigned a, c, m, s0, s_n;
     double r_n;
 
-}Random2D;
+}Random2;
 
 //ôóíêö³ÿ ïåðåâ³ðêè íà âçàºìíó ïðîñòîòó
 int isCoprime(int a, int b);
 
 //ôóíêö³ÿ ãåíåðóâàííÿ ïàðàìåòð³â ñòðóêòóðè òà ïåðåâ³ðêà óìîâ
 //çàçíà÷åííèõ â çàäà÷³
-void generate_numbers_Random2D(Random2D* self);
+void generate_numbers_Random2(Random2* self);
 
 //íàñòóïíèé ÷ëåí äëÿ íàòóðàëüíèõ ÷èñåë
-unsigned next_s_n(Random2D* self);
+unsigned next_s_n(Random2* self);
 
 //íàñòóïíèé ÷ëåí äëÿ ä³éñíèõ ÷èñåë
-double next_r_n(Random2D* self);
+double next_r_n(Random2* self);
 
 //ôóíêö³ÿ ãåíåðóâàííÿ ö³ëîãî ÷-ëà
-int generate_integer(Random2D* self);
+int generate_integer(Random2* self);
 
 //ãåíåðóâàííÿ ä³éñíîãî ÷-ëà
-double generate_real(Random2D* self);
+double generate_real(Random2* self);
 
 //ãåíåðóâàííÿ -âèì³ðíîãî âåêòîðà ç ä³éñíèõ ÷èñåë
-double* generate_vector(Random2D* self, unsigned n);
+double* generate_vector(Random2* self, unsigned n);
 
 //îá÷èñëåííÿ êîåô-òó êîðåëÿö³¿ ì³æ äâîìà ìàñèâàìè ä³éñíèõ ÷èñåë
 double corel_coef(double* X, double* Y, unsigned n, FILE* fout);
 
 //îá÷èñëåííÿ îá'ºìó n-âèì³ðíî¿ ñôåðè
-double sph_Monte_Carlo(Random2D* self, unsigned N, FILE* fout);
+double sph_Monte_Carlo(Random2* self, unsigned N, FILE* fout);
 
 //çàïèñàòè ðåçóëüòàò â ôàéë òà âèâåñòè (ö³ëå)
 void print_integer(FILE* fout, const char* text, int num);
