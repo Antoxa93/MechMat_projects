@@ -19,7 +19,7 @@ void testing (){
 	generate_numbers_Random2(&r);
 	//printf("result %d \n", r.m);
 	int m;
-	printf("Input the dimension of sphere : ");
+	printf("Input n of prostranstvo : ");
 	scanf("%d", &m);
 	sph_Monte_Carlo(&r, m, 0);
 
