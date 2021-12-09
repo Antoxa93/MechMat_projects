@@ -8,36 +8,36 @@
 #include <nlohmann/json.hpp>
 
 // file func28.cpp
-// Реалізація методів классів та функцій
-// Виконав студент гр. Компмат - 2
-// А.В. Немирович
+// Р РµР°Р»С–Р·Р°С†С–СЏ РјРµС‚РѕРґС–РІ РєР»Р°СЃСЃС–РІ С‚Р° С„СѓРЅРєС†С–Р№
+// Р’РёРєРѕРЅР°РІ СЃС‚СѓРґРµРЅС‚ РіСЂ. РљРѕРјРїРјР°С‚ - 2
+// Рђ.Р’. РќРµРјРёСЂРѕРІРёС‡
 
-// класс Людина
+// РєР»Р°СЃСЃ Р›СЋРґРёРЅР°
 
-//метод встановлення імені
+//РјРµС‚РѕРґ РІСЃС‚Р°РЅРѕРІР»РµРЅРЅСЏ С–РјРµРЅС–
 void Person::set_name(string name) { this->name = name; }
 
-//виведення імені
+//РІРёРІРµРґРµРЅРЅСЏ С–РјРµРЅС–
 void Person::print () {
     cout << "Name: " << name << "\t";
     //if (endline) out << endl;
 }
 
-//введення імені
+//РІРІРµРґРµРЅРЅСЏ С–РјРµРЅС–
 void Person::input() {
     cin >> name;
 }
 
-//виведення імені в форматі json
+//РІРёРІРµРґРµРЅРЅСЏ С–РјРµРЅС– РІ С„РѕСЂРјР°С‚С– json
 void Person::ins() {
 	j["name"] = name;
 }
 
 
-//класс Студент
+//РєР»Р°СЃСЃ РЎС‚СѓРґРµРЅС‚
 
-// метод введення оцінок
-// приймається послідовність натуральних чисел ДО нуля
+// РјРµС‚РѕРґ РІРІРµРґРµРЅРЅСЏ РѕС†С–РЅРѕРє
+// РїСЂРёР№РјР°С”С‚СЊСЃСЏ РїРѕСЃР»С–РґРѕРІРЅС–СЃС‚СЊ РЅР°С‚СѓСЂР°Р»СЊРЅРёС… С‡РёСЃРµР» Р”Рћ РЅСѓР»СЏ
 vector<int> Student::input_vec() {
     vector<int> v;
     int a;
@@ -52,12 +52,12 @@ vector<int> Student::input_vec() {
     return v;
 }
 
-// метод встановлення стипендії
+// РјРµС‚РѕРґ РІСЃС‚Р°РЅРѕРІР»РµРЅРЅСЏ СЃС‚РёРїРµРЅРґС–С—
 void Student::set_stip(float _stip) {
     sch_sh = _stip;
 }
 
-// метод обчислення середнього балу
+// РјРµС‚РѕРґ РѕР±С‡РёСЃР»РµРЅРЅСЏ СЃРµСЂРµРґРЅСЊРѕРіРѕ Р±Р°Р»Сѓ
 float Student::sr() {
     vector<int>::iterator it = marks.begin();
     int i = 0;
@@ -71,7 +71,7 @@ float Student::sr() {
     return sredn;
 }
 
-// метод вирахування стипендії
+// РјРµС‚РѕРґ РІРёСЂР°С…СѓРІР°РЅРЅСЏ СЃС‚РёРїРµРЅРґС–С—
 void Student::stipend() {
     if (sredn >= 4.0 && sredn < 5.0) {
         sch_sh = 30 * sredn;
@@ -84,20 +84,20 @@ void Student::stipend() {
     }
 }
 
-// метод введення курсу
+// РјРµС‚РѕРґ РІРІРµРґРµРЅРЅСЏ РєСѓСЂСЃСѓ
 void Student::input() {
     Person::input();
     cin >> course;
 }
 
-// виведення в консоль 
+// РІРёРІРµРґРµРЅРЅСЏ РІ РєРѕРЅСЃРѕР»СЊ 
 void Student::print() {
     Person::print();
     cout << " Average: " << std::setprecision(3) << sr() << "\t" << " Course: " << course << "\t" << " Stipendia: " << std::setprecision(4) << sch_sh << "\t";
     //if (endline) out << endl;
 }
 
-// виведення в форматі json
+// РІРёРІРµРґРµРЅРЅСЏ РІ С„РѕСЂРјР°С‚С– json
 void Student::ins() {
     Person::ins();
     j["marks"] = marks;
@@ -106,8 +106,8 @@ void Student::ins() {
     j["stipendia"] = sch_sh;
 }
 
-// введення викладачів
-// приймає послідовність рядків ДО 0
+// РІРІРµРґРµРЅРЅСЏ РІРёРєР»Р°РґР°С‡С–РІ
+// РїСЂРёР№РјР°С” РїРѕСЃР»С–РґРѕРІРЅС–СЃС‚СЊ СЂСЏРґРєС–РІ Р”Рћ 0
 vector<string> Zachetka::input_prep() {
     vector<string> v;
     string a;
@@ -122,8 +122,8 @@ vector<string> Zachetka::input_prep() {
     return v;
 }
 
-// введення викладачів
-// приймає послідовність рядків ДО 0
+// РІРІРµРґРµРЅРЅСЏ РІРёРєР»Р°РґР°С‡С–РІ
+// РїСЂРёР№РјР°С” РїРѕСЃР»С–РґРѕРІРЅС–СЃС‚СЊ СЂСЏРґРєС–РІ Р”Рћ 0
 vector<string> Zachetka::input_disc() {
     vector<string> v;
     string a;
@@ -138,37 +138,37 @@ vector<string> Zachetka::input_disc() {
     return v;
 }
 
-// виведення в форматі json
+// РІРёРІРµРґРµРЅРЅСЏ РІ С„РѕСЂРјР°С‚С– json
 void Zachetka::ins() {
     Student::ins();
     j["disciplines"] = discipl;
     j["lecturers"] = lecturers;
 }
 
-// класс Співробітник
+// РєР»Р°СЃСЃ РЎРїС–РІСЂРѕР±С–С‚РЅРёРє
 
-// виведення окладу
+// РІРёРІРµРґРµРЅРЅСЏ РѕРєР»Р°РґСѓ
 void Employee::print() {
     Person::print();
     cout << ' ' << "Oklad " << oklad << "\t";
 }
 
-// введення окладу і стажу
+// РІРІРµРґРµРЅРЅСЏ РѕРєР»Р°РґСѓ С– СЃС‚Р°Р¶Сѓ
 void Employee::input() {
     Person::input();
     cin >> oklad >> stazh;
 }
 
-// виведення в форматі json
+// РІРёРІРµРґРµРЅРЅСЏ РІ С„РѕСЂРјР°С‚С– json
 void Employee::ins() {
     Person::ins();
     j["oklad"] = oklad;
     j["stazh"] = stazh;
 }
 
-// клас Викладач
+// РєР»Р°СЃ Р’РёРєР»Р°РґР°С‡
 
-// обчислення зарплати
+// РѕР±С‡РёСЃР»РµРЅРЅСЏ Р·Р°СЂРїР»Р°С‚Рё
 void Lecturer::cal_s() {
     double h;
     h = oklad + 0.4 * oklad * (double(stazh) / 100);
@@ -188,48 +188,48 @@ void Lecturer::cal_s() {
     }
 }
 
-// введеня наук. степені
+// РІРІРµРґРµРЅСЏ РЅР°СѓРє. СЃС‚РµРїРµРЅС–
 void Lecturer::input() {
     Employee::input();
     cin >> step;
 }
 
-// виведення степені та зарплати
+// РІРёРІРµРґРµРЅРЅСЏ СЃС‚РµРїРµРЅС– С‚Р° Р·Р°СЂРїР»Р°С‚Рё
 void Lecturer::print() {
      Employee::print();
      cout << ' ' << " Stepen " << step << "\t" << ' ' << " Salary " << salary << "\t";
  }
 
-// виведення в форматі json
+// РІРёРІРµРґРµРЅРЅСЏ РІ С„РѕСЂРјР°С‚С– json
 void Lecturer::ins() {
      Employee::ins();
      j["step"] = step;
      j["salary"] = salary;
  }
 
-// класс Спеціаліст
+// РєР»Р°СЃСЃ РЎРїРµС†С–Р°Р»С–СЃС‚
 
-// введення спеціальності
+// РІРІРµРґРµРЅРЅСЏ СЃРїРµС†С–Р°Р»СЊРЅРѕСЃС‚С–
 void Specialist::input() {
      Lecturer::input();
      cin >> spec;
  }
 
-// виведення спеціальності
+// РІРёРІРµРґРµРЅРЅСЏ СЃРїРµС†С–Р°Р»СЊРЅРѕСЃС‚С–
 void Specialist::print() {
     Lecturer::print();
     cout << " Specialization: " << spec;
 }
 
-// // виведення в форматі json
+// // РІРёРІРµРґРµРЅРЅСЏ РІ С„РѕСЂРјР°С‚С– json
 void Specialist::ins() {
     Lecturer::ins();
     j["specialization"] = spec;
 }
 
-// класс для роботи з файлом студентів
+// РєР»Р°СЃСЃ РґР»СЏ СЂРѕР±РѕС‚Рё Р· С„Р°Р№Р»РѕРј СЃС‚СѓРґРµРЅС‚С–РІ
 
-//введення інформаціі про n студентів
+//РІРІРµРґРµРЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С– РїСЂРѕ n СЃС‚СѓРґРµРЅС‚С–РІ
 void File_stud::input_stud_information() {
     int n;
     cout << "Input number of students: ";
@@ -267,11 +267,11 @@ void File_stud::input_stud_information() {
     cout << J << endl;
     ofstream outj;
     outj.open(filename);
-    outj << J; //вводимо json-інформацію в файл
+    outj << J; //РІРІРѕРґРёРјРѕ json-С–РЅС„РѕСЂРјР°С†С–СЋ РІ С„Р°Р№Р»
     outj.close();
 }
 
-// додавання одного студента
+// РґРѕРґР°РІР°РЅРЅСЏ РѕРґРЅРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р°
 void File_stud::add_stud_information() {
     string name;
     vector<int> marks;
@@ -283,7 +283,7 @@ void File_stud::add_stud_information() {
     nlohmann::json J{};
     ifstream inj;
     inj.open(filename);
-    inj >> J; // зчитування з json
+    inj >> J; // Р·С‡РёС‚СѓРІР°РЅРЅСЏ Р· json
     inj.close();
 
     for (int i = 0; i < 1; i++) {
@@ -310,12 +310,12 @@ void File_stud::add_stud_information() {
     //cout << J << endl;
     ofstream outj;
     outj.open(filename);
-    outj << J; //вводимо json-інформацію в файл з новим студентом
+    outj << J; //РІРІРѕРґРёРјРѕ json-С–РЅС„РѕСЂРјР°С†С–СЋ РІ С„Р°Р№Р» Р· РЅРѕРІРёРј СЃС‚СѓРґРµРЅС‚РѕРј
     outj.close();
 }
 
-// видалення студента
-// щоб не видаляти нікого, ввести довільний рядок
+// РІРёРґР°Р»РµРЅРЅСЏ СЃС‚СѓРґРµРЅС‚Р°
+// С‰РѕР± РЅРµ РІРёРґР°Р»СЏС‚Рё РЅС–РєРѕРіРѕ, РІРІРµСЃС‚Рё РґРѕРІС–Р»СЊРЅРёР№ СЂСЏРґРѕРє
 void File_stud::del_stud(string name) {
     nlohmann::json J{};
     ifstream inj;
@@ -333,11 +333,11 @@ void File_stud::del_stud(string name) {
     }
     ofstream outj;
     outj.open(filename);
-    outj << J1; // виведення в json але без студента
+    outj << J1; // РІРёРІРµРґРµРЅРЅСЏ РІ json Р°Р»Рµ Р±РµР· СЃС‚СѓРґРµРЅС‚Р°
     outj.close();
 }
 
-// отримання вектору об'єктів Заліковка з файлу для подальшої роботи
+// РѕС‚СЂРёРјР°РЅРЅСЏ РІРµРєС‚РѕСЂСѓ РѕР±'С”РєС‚С–РІ Р—Р°Р»С–РєРѕРІРєР° Р· С„Р°Р№Р»Сѓ РґР»СЏ РїРѕРґР°Р»СЊС€РѕС— СЂРѕР±РѕС‚Рё
 vector<Zachetka> File_stud::get_stud() {
     nlohmann::json J{};
     ifstream inj;
@@ -358,9 +358,9 @@ vector<Zachetka> File_stud::get_stud() {
 }
 
 
-// класс для роботи з файлом викладачів
+// РєР»Р°СЃСЃ РґР»СЏ СЂРѕР±РѕС‚Рё Р· С„Р°Р№Р»РѕРј РІРёРєР»Р°РґР°С‡С–РІ
 
-// метод введення інформації про n викладачів
+// РјРµС‚РѕРґ РІРІРµРґРµРЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ n РІРёРєР»Р°РґР°С‡С–РІ
 void File_lect::input_lect() {
     int n;
     cout << "Input number of lecturers: ";
@@ -395,7 +395,7 @@ void File_lect::input_lect() {
     outj.close();
 }
 
-// додавання одного викладача
+// РґРѕРґР°РІР°РЅРЅСЏ РѕРґРЅРѕРіРѕ РІРёРєР»Р°РґР°С‡Р°
 void File_lect::add_lect_info() {
     nlohmann::json J{};
     ifstream inj;
@@ -431,7 +431,7 @@ void File_lect::add_lect_info() {
     outj.close();
 }
 
-// видалення викладача
+// РІРёРґР°Р»РµРЅРЅСЏ РІРёРєР»Р°РґР°С‡Р°
 void File_lect::del_lect(string name) {
     nlohmann::json J{};
     ifstream inj;
@@ -453,7 +453,7 @@ void File_lect::del_lect(string name) {
     outj.close();
 }
 
-// отримання вектору об'єктів Спеціаліст з файлу для подальшої роботи
+// РѕС‚СЂРёРјР°РЅРЅСЏ РІРµРєС‚РѕСЂСѓ РѕР±'С”РєС‚С–РІ РЎРїРµС†С–Р°Р»С–СЃС‚ Р· С„Р°Р№Р»Сѓ РґР»СЏ РїРѕРґР°Р»СЊС€РѕС— СЂРѕР±РѕС‚Рё
 vector<Specialist> File_lect::get_lect() {
     nlohmann::json J{};
     ifstream inj;
@@ -472,7 +472,7 @@ vector<Specialist> File_lect::get_lect() {
     return Z;
 }
 
-// функція наявності рядка у векторі з рядків
+// С„СѓРЅРєС†С–СЏ РЅР°СЏРІРЅРѕСЃС‚С– СЂСЏРґРєР° Сѓ РІРµРєС‚РѕСЂС– Р· СЂСЏРґРєС–РІ
 bool poisk(std::vector<std::string> N, std::string prep) {
     std::vector<std::string>::iterator it = N.begin();
     bool result = false;
@@ -485,7 +485,7 @@ bool poisk(std::vector<std::string> N, std::string prep) {
     return result;
 }
 
-// отримання даних про студентів, в яких читає даний викладач
+// РѕС‚СЂРёРјР°РЅРЅСЏ РґР°РЅРёС… РїСЂРѕ СЃС‚СѓРґРµРЅС‚С–РІ, РІ СЏРєРёС… С‡РёС‚Р°С” РґР°РЅРёР№ РІРёРєР»Р°РґР°С‡
 void st() {
     std::string prepod;
     std::cout << "Input name of lecturer: ";
@@ -506,4 +506,5 @@ void st() {
         it++;
     }
 }
+
 
