@@ -1,6 +1,5 @@
 
 #include <math.h>
-#include <time.h>
 #include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
@@ -8,22 +7,22 @@
 
 #define PI 3.141592653589793
 
-// file func25.с 
-//оголошення функцій для виконання обчислень з
-//задачі 25 - Random-2
-//Виконав студент групи Компмат-2
-//А. В. Немирович
+// file func25.Г± 
+//Г®ГЈГ®Г«Г®ГёГҐГ­Г­Гї ГґГіГ­ГЄГ¶ВіГ© Г¤Г«Гї ГўГЁГЄГ®Г­Г Г­Г­Гї Г®ГЎГ·ГЁГ±Г«ГҐГ­Гј Г§
+//Г§Г Г¤Г Г·Ві 25 - Random-2
+//Г‚ГЁГЄГ®Г­Г Гў Г±ГІГіГ¤ГҐГ­ГІ ГЈГ°ГіГЇГЁ ГЉГ®Г¬ГЇГ¬Г ГІ-2
+//ГЂ. Г‚. ГЌГҐГ¬ГЁГ°Г®ГўГЁГ·
 //08.12.2021
 
 
-//перевірка на взаємну простоту
+//ГЇГҐГ°ГҐГўВіГ°ГЄГ  Г­Г  ГўГ§Г ВєГ¬Г­Гі ГЇГ°Г®Г±ГІГ®ГІГі
 int isCoprime(int a, int b) {
     for (int gcd = a; ; gcd = b, b = a % b, a = gcd)
         if (!b) return gcd == 1;
 }
 
-// Генерація 
-// генерація параметрів згідно умовам задачі
+// ГѓГҐГ­ГҐГ°Г Г¶ВіГї 
+// ГЈГҐГ­ГҐГ°Г Г¶ВіГї ГЇГ Г°Г Г¬ГҐГІГ°ВіГў Г§ГЈВіГ¤Г­Г® ГіГ¬Г®ГўГ Г¬ Г§Г Г¤Г Г·Ві
 void generate_numbers_Random2D(Random2D* self) {
 
     double k = 16 + rand() % 16;
@@ -48,14 +47,14 @@ void generate_numbers_Random2D(Random2D* self) {
     //printf("m = %d, a = %d, c = %d, s0 = %d\n", self->m, self->a, self->c, self->s0);
 }
 
-// Обчислення наступного члена послідовності для нат. чисел
+// ГЋГЎГ·ГЁГ±Г«ГҐГ­Г­Гї Г­Г Г±ГІГіГЇГ­Г®ГЈГ® Г·Г«ГҐГ­Г  ГЇГ®Г±Г«ВіГ¤Г®ГўГ­Г®Г±ГІВі Г¤Г«Гї Г­Г ГІ. Г·ГЁГ±ГҐГ«
 unsigned next_s_n(Random2D* self) {
     self->s_n = (self->a * self->s_n + self->c) % self->m;
 
     return self->s_n;
 }
 
-// Обчислення наступного члена послідовності для дійсних чисел
+// ГЋГЎГ·ГЁГ±Г«ГҐГ­Г­Гї Г­Г Г±ГІГіГЇГ­Г®ГЈГ® Г·Г«ГҐГ­Г  ГЇГ®Г±Г«ВіГ¤Г®ГўГ­Г®Г±ГІВі Г¤Г«Гї Г¤ВіГ©Г±Г­ГЁГµ Г·ГЁГ±ГҐГ«
 double next_r_n(Random2D* self) {
     self->r_n = (double)(self->s_n + 1) / (self->m + 1);
 
@@ -64,25 +63,25 @@ double next_r_n(Random2D* self) {
     return self->r_n;
 }
 
-// Генерація цілого числа
+// ГѓГҐГ­ГҐГ°Г Г¶ВіГї Г¶ВіГ«Г®ГЈГ® Г·ГЁГ±Г«Г 
 int generate_integer(Random2D* self) {
     int a = INT_MAX * (2 * (0.5 - next_r_n(self)));
     return a;
 }
 
-// Генерація дійсного числа
+// ГѓГҐГ­ГҐГ°Г Г¶ВіГї Г¤ВіГ©Г±Г­Г®ГЈГ® Г·ГЁГ±Г«Г 
 double generate_real(Random2D* self) {
     double a = (double) generate_integer(self) - next_r_n(self);
     return a;
 }
 
-// функція обчислення n-вимірнгої сфери
+// ГґГіГ­ГЄГ¶ВіГї Г®ГЎГ·ГЁГ±Г«ГҐГ­Г­Гї n-ГўГЁГ¬ВіГ°Г­ГЈГ®Вї Г±ГґГҐГ°ГЁ
 double sph_Monte_Carlo(Random2D* self, unsigned N, FILE* fout) {
     double V = 0;
     double counter = 0; 
-    double V_ozn = pow(PI, N / 2.0) / exp(lgamma(N / 2.0 + 1.0)); //за означенням
+    double V_ozn = pow(PI, N / 2.0) / exp(lgamma(N / 2.0 + 1.0)); //Г§Г  Г®Г§Г­Г Г·ГҐГ­Г­ГїГ¬
 
-    //метод Монте-Карло
+    //Г¬ГҐГІГ®Г¤ ГЊГ®Г­ГІГҐ-ГЉГ Г°Г«Г®
     for (int i = 0; i < 100000; i++) {
         double r = 0;
         for (int j = 0; j < N; j++) {
@@ -93,7 +92,7 @@ double sph_Monte_Carlo(Random2D* self, unsigned N, FILE* fout) {
             counter += 1; 
     }
 
-    V = (pow(2, N) * counter) / 100000; //об'єм
+    V = (pow(2, N) * counter) / 100000; //Г®ГЎ'ВєГ¬
     printf("V of a %u-sphere : %lf\n", N, V);
 
     printf("V oznachennya : %lf\n", V_ozn);
@@ -101,7 +100,7 @@ double sph_Monte_Carlo(Random2D* self, unsigned N, FILE* fout) {
     printf("Tochnost : %lf\n", fabs(V_ozn - V));
 
 
-    if (fout) { //запис в файл (за необхідності)
+    if (fout) { //Г§Г ГЇГЁГ± Гў ГґГ Г©Г« (Г§Г  Г­ГҐГ®ГЎГµВіГ¤Г­Г®Г±ГІВі)
         fprintf(fout, "V of a %u-sphere : %lf\n", N, V);
 
         fprintf(fout, "V oznachennya : %lf\n", V_ozn);
@@ -111,7 +110,7 @@ double sph_Monte_Carlo(Random2D* self, unsigned N, FILE* fout) {
     return V;
 }
 
-// Генерація вектору розмірності n з випадкових дійсних чисел
+// ГѓГҐГ­ГҐГ°Г Г¶ВіГї ГўГҐГЄГІГ®Г°Гі Г°Г®Г§Г¬ВіГ°Г­Г®Г±ГІВі n Г§ ГўГЁГЇГ Г¤ГЄГ®ГўГЁГµ Г¤ВіГ©Г±Г­ГЁГµ Г·ГЁГ±ГҐГ«
 double* generate_vector(Random2D* self, unsigned n) {
     double* v = (double*)malloc(n * sizeof * v);
     for (int i = 0; i < n; i++)
@@ -119,7 +118,7 @@ double* generate_vector(Random2D* self, unsigned n) {
     return v;
 }
 
-// Обчислення коеф-ту кореляції між двома векторами
+// ГЋГЎГ·ГЁГ±Г«ГҐГ­Г­Гї ГЄГ®ГҐГґ-ГІГі ГЄГ®Г°ГҐГ«ГїГ¶ВіВї Г¬ВіГ¦ Г¤ГўГ®Г¬Г  ГўГҐГЄГІГ®Г°Г Г¬ГЁ
 double corel_coef(double* X, double* Y, unsigned n, FILE* fout) {
     double s_x = 0, s_y = 0, s_xy = 0;
     double sqs_X = 0, sqs_Y = 0; //squareSum
@@ -142,13 +141,13 @@ double corel_coef(double* X, double* Y, unsigned n, FILE* fout) {
 }
 
 
-//запис в файл/консоль для цілого
+//Г§Г ГЇГЁГ± Гў ГґГ Г©Г«/ГЄГ®Г­Г±Г®Г«Гј Г¤Г«Гї Г¶ВіГ«Г®ГЈГ®
 void print_integer(FILE* fout, const char* string, int num) {
     printf(string, num);
     fprintf(fout, string, num);
 }
 
-//запис в файл/консоль для дійсного
+//Г§Г ГЇГЁГ± Гў ГґГ Г©Г«/ГЄГ®Г­Г±Г®Г«Гј Г¤Г«Гї Г¤ВіГ©Г±Г­Г®ГЈГ®
 void print_double(FILE* fout, const char* string, double num) {
     printf(string, num);
     fprintf(fout, string, num);
