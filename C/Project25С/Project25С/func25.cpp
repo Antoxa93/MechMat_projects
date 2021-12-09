@@ -23,7 +23,7 @@ int isCoprime(int a, int b) {
 
 // Ãåíåðàö³ÿ 
 // ãåíåðàö³ÿ ïàðàìåòð³â çã³äíî óìîâàì çàäà÷³
-void generate_numbers_Random2D(Random2D* self) {
+void generate_numbers_Random2(Random2D* self) {
 
     double k = 16 + rand() % 16;
     if (k == 31) {
@@ -48,14 +48,14 @@ void generate_numbers_Random2D(Random2D* self) {
 }
 
 // Îá÷èñëåííÿ íàñòóïíîãî ÷ëåíà ïîñë³äîâíîñò³ äëÿ íàò. ÷èñåë
-unsigned next_s_n(Random2D* self) {
+unsigned next_s_n(Random2* self) {
     self->s_n = (self->a * self->s_n + self->c) % self->m;
 
     return self->s_n;
 }
 
 // Îá÷èñëåííÿ íàñòóïíîãî ÷ëåíà ïîñë³äîâíîñò³ äëÿ ä³éñíèõ ÷èñåë
-double next_r_n(Random2D* self) {
+double next_r_n(Random2* self) {
     self->r_n = (double)(self->s_n + 1) / (self->m + 1);
 
     next_s_n(self);
@@ -64,19 +64,19 @@ double next_r_n(Random2D* self) {
 }
 
 // Ãåíåðàö³ÿ ö³ëîãî ÷èñëà
-int generate_integer(Random2D* self) {
+int generate_integer(Random2* self) {
     int a = INT_MAX * (2 * (0.5 - next_r_n(self)));
     return a;
 }
 
 // Ãåíåðàö³ÿ ä³éñíîãî ÷èñëà
-double generate_real(Random2D* self) {
+double generate_real(Random2* self) {
     double a = (double) generate_integer(self) - next_r_n(self);
     return a;
 }
 
 // ôóíêö³ÿ îá÷èñëåííÿ n-âèì³ðíãî¿ ñôåðè
-double sph_Monte_Carlo(Random2D* self, unsigned N, FILE* fout) {
+double sph_Monte_Carlo(Random2* self, unsigned N, FILE* fout) {
     double V = 0;
     double counter = 0; 
     double V_ozn = pow(PI, N / 2.0) / exp(lgamma(N / 2.0 + 1.0)); //çà îçíà÷åííÿì
@@ -111,7 +111,7 @@ double sph_Monte_Carlo(Random2D* self, unsigned N, FILE* fout) {
 }
 
 // Ãåíåðàö³ÿ âåêòîðó ðîçì³ðíîñò³ n ç âèïàäêîâèõ ä³éñíèõ ÷èñåë
-double* generate_vector(Random2D* self, unsigned n) {
+double* generate_vector(Random2* self, unsigned n) {
     double* v = (double*)malloc(n * sizeof * v);
     for (int i = 0; i < n; i++)
         v[i] = generate_real(self);
