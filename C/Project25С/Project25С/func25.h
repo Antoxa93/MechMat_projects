@@ -3,10 +3,10 @@
 #define FUNC25_H_
 
 /* file func25.h
-îãîëîøåííÿ ôóíêö³é äëÿ âèêîíàííÿ îá÷èñëåíü ç
-çàäà÷³ 25 - Random-2
-Âèêîíàâ ñòóäåíò ãðóïè Êîìïìàò-2
-À. Â. Íåìèðîâè÷
+оголошення функцій для виконання обчислень з
+задачі 25 - Random-2
+Виконав студент групи Компмат-2
+А. В. Немирович
 08.12.2021 */
 
 #include <math.h>
@@ -14,48 +14,57 @@
 #include <limits.h>
 #include <stdlib.h>
 
-//ñòðóêòóðà ç ïàðàìåòðàìè
+//структура з параметрами
 
 typedef struct Random2 {
 
-    unsigned a, c, m, s0, s_n;
+    unsigned a;
+    unsigned c;
+    unsigned m;
+    unsigned s0;
+    unsigned s_n;
     double r_n;
 
 }Random2;
 
-//ôóíêö³ÿ ïåðåâ³ðêè íà âçàºìíó ïðîñòîòó
-int isCoprime(int a, int b);
-
-//ôóíêö³ÿ ãåíåðóâàííÿ ïàðàìåòð³â ñòðóêòóðè òà ïåðåâ³ðêà óìîâ
-//çàçíà÷åííèõ â çàäà÷³
-void generate_numbers_Random2(Random2* self);
-
-//íàñòóïíèé ÷ëåí äëÿ íàòóðàëüíèõ ÷èñåë
-unsigned next_s_n(Random2* self);
-
-//íàñòóïíèé ÷ëåí äëÿ ä³éñíèõ ÷èñåë
-double next_r_n(Random2* self);
-
-//ôóíêö³ÿ ãåíåðóâàííÿ ö³ëîãî ÷-ëà
-int generate_integer(Random2* self);
-
-//ãåíåðóâàííÿ ä³éñíîãî ÷-ëà
-double generate_real(Random2* self);
-
-//ãåíåðóâàííÿ -âèì³ðíîãî âåêòîðà ç ä³éñíèõ ÷èñåë
-double* generate_vector(Random2* self, unsigned n);
-
-//îá÷èñëåííÿ êîåô-òó êîðåëÿö³¿ ì³æ äâîìà ìàñèâàìè ä³éñíèõ ÷èñåë
-double corel_coef(double* X, double* Y, unsigned n, FILE* fout);
-
-//îá÷èñëåííÿ îá'ºìó n-âèì³ðíî¿ ñôåðè
-double sph_Monte_Carlo(Random2* self, unsigned N, FILE* fout);
-
-//çàïèñàòè ðåçóëüòàò â ôàéë òà âèâåñòè (ö³ëå)
+//записати результат в файл та вивести (ціле)
 void print_integer(FILE* fout, const char* text, int num);
 
-//çàïèñàòè ðåçóëüòàò â ôàéë òà âèâåñòè (ä³éñíå)
+//записати результат в файл та вивести (дійсне)
 void print_double(FILE* fout, const char* text, double num);
 
+//функція перевірки на взаємну простоту
+int isCoprime(int a, int b);
+
+//функція генерування параметрів структури та перевірка умов
+//зазначенних в задачі
+void generate_numbers_Random2(Random2* self);
+
+//генерування -вимірного вектора з дійсних чисел
+double* generate_vector(Random2* self, unsigned n);
+
+//обчислення коеф-ту кореляції між двома масивами дійсних чисел
+double corel_coef(double* X, double* Y, unsigned n, FILE* fout);
+
+//наступний член для натуральних чисел
+unsigned next_s_n(Random2* self);
+
+//наступний член для дійсних чисел
+double next_r_n(Random2* self);
+
+//функція генерування цілого ч-ла
+int generate_integer(Random2* self);
+
+//генерування дійсного ч-ла
+double generate_real(Random2* self);
+
+
+//обчислення об'єму n-вимірної сфери
+double sph_Monte_Carlo(Random2* self, unsigned N, FILE* fout);
+
+
+
 #endif
+
+
 
