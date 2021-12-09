@@ -3,10 +3,10 @@
 #include "func28.h"
 
 // file test1.cpp
-// Реалізація методів классів та функцій
-// Виконав студент гр. Компмат - 2
-// А.В. Немирович
-//реферативну частину додам
+// Р РµР°Р»С–Р·Р°С†С–СЏ РјРµС‚РѕРґС–РІ РєР»Р°СЃСЃС–РІ С‚Р° С„СѓРЅРєС†С–Р№
+// Р’РёРєРѕРЅР°РІ СЃС‚СѓРґРµРЅС‚ РіСЂ. РљРѕРјРїРјР°С‚ - 2
+// Рђ.Р’. РќРµРјРёСЂРѕРІРёС‡
+//СЂРµС„РµСЂР°С‚РёРІРЅСѓ С‡Р°СЃС‚РёРЅСѓ РґРѕРґР°Рј
 
 using namespace std;
 
@@ -37,7 +37,7 @@ void test2() {
 
 void test_inp_outp_stud() {
 
-	//введення інформації (за необхідністю)
+	//РІРІРµРґРµРЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— (Р·Р° РЅРµРѕР±С…С–РґРЅС–СЃС‚СЋ)
 	std::cout << "Attention: to end filling marks/lecturers/disciplines put '0' \n";
 	std::string f_name = "stud_info_28.txt";
 	File_stud fs(f_name);
@@ -46,7 +46,7 @@ void test_inp_outp_stud() {
 	std::cin >> bol;
 	if (bol) { fs.input_stud_information(); }
 
-	//додавання інформації (за необхідністю)
+	//РґРѕРґР°РІР°РЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— (Р·Р° РЅРµРѕР±С…С–РґРЅС–СЃС‚СЋ)
 	std::cout << "To add student`s info put not '0': \n";
 	int bol1, n;
 	std::cin >> bol1;
@@ -58,7 +58,7 @@ void test_inp_outp_stud() {
 		}
 	}
 	
-	// видалення інформації (за необхідністю)
+	// РІРёРґР°Р»РµРЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— (Р·Р° РЅРµРѕР±С…С–РґРЅС–СЃС‚СЋ)
 	std::string nam;
 	std::cout << "Input name to delete: ";
 	std::cin >> nam;
@@ -67,7 +67,7 @@ void test_inp_outp_stud() {
 	std::vector<Zachetka> Z;
 	Z = fs.get_stud();
 
-	//виведення інформації в консоль
+	//РІРёРІРµРґРµРЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— РІ РєРѕРЅСЃРѕР»СЊ
 	std::vector<Zachetka>::iterator it = Z.begin();
 	std::cout << std::endl;
 	while (it != Z.end()) {
@@ -77,7 +77,7 @@ void test_inp_outp_stud() {
 }
 
 void test_inp_outp_lect() {
-	//введення інформації (за необхідністю)
+	//РІРІРµРґРµРЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— (Р·Р° РЅРµРѕР±С…С–РґРЅС–СЃС‚СЋ)
 	std::string f_name = "lect_info_28.txt";
 	File_lect fs(f_name);
 	std::cout << "To RE-input lecturer`s info put not '0': ";
@@ -86,7 +86,7 @@ void test_inp_outp_lect() {
 	if (bol) { fs.input_lect(); }
 	//
 
-	//додавання інформації (за необхідністю)
+	//РґРѕРґР°РІР°РЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— (Р·Р° РЅРµРѕР±С…С–РґРЅС–СЃС‚СЋ)
 	std::cout << "To add lecturers`s info put not '0': \n";
 	int bol1, n;
 	std::cin >> bol1;
@@ -98,13 +98,13 @@ void test_inp_outp_lect() {
 		}
 	}
 
-	// видалення інформації (за необхідністю)
+	// РІРёРґР°Р»РµРЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— (Р·Р° РЅРµРѕР±С…С–РґРЅС–СЃС‚СЋ)
 	std::string nam;
 	std::cout << "Input name of Lecurer to delete: ";
 	std::cin >> nam;
 	fs.del_lect(nam);
 
-	//виведення інформації в консоль
+	//РІРёРІРµРґРµРЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С— РІ РєРѕРЅСЃРѕР»СЊ
 	std::vector<Specialist> Z;
 	Z = fs.get_lect();
 	std::vector<Specialist>::iterator it = Z.begin();
@@ -119,8 +119,8 @@ void test_inp_outp_lect() {
 
 
 int main() {
-	test_inp_outp_stud(); //тест для студентів
-	test_inp_outp_lect(); //для викладачів
+	test_inp_outp_stud(); //С‚РµСЃС‚ РґР»СЏ СЃС‚СѓРґРµРЅС‚С–РІ
+	test_inp_outp_lect(); //РґР»СЏ РІРёРєР»Р°РґР°С‡С–РІ
 	std::cout << "Print students of the Lecturer:" << std::endl;
-	st(); //виведення студентів, що навчаються у даного викладача.
+	st(); //РІРёРІРµРґРµРЅРЅСЏ СЃС‚СѓРґРµРЅС‚С–РІ, С‰Рѕ РЅР°РІС‡Р°СЋС‚СЊСЃСЏ Сѓ РґР°РЅРѕРіРѕ РІРёРєР»Р°РґР°С‡Р°.
 }
