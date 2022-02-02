@@ -3,60 +3,68 @@
 #define FUNC25_H_
 
 /* file func25.h
-оголошення функцій для виконання обчислень з
-задачі 25 - Random-2
-Виконав студент групи Компмат-2
-А. В. Немирович
+РѕРіРѕР»РѕС€РµРЅРЅСЏ С„СѓРЅРєС†С–Р№ РґР»СЏ РІРёРєРѕРЅР°РЅРЅСЏ РѕР±С‡РёСЃР»РµРЅСЊ Р·
+Р·Р°РґР°С‡С– 25 - Random-2
+Р’РёРєРѕРЅР°РІ СЃС‚СѓРґРµРЅС‚ РіСЂСѓРїРё РљРѕРјРїРјР°С‚-2
+Рђ. Р’. РќРµРјРёСЂРѕРІРёС‡
 08.12.2021 */
 
 #include <math.h>
-#include <time.h>
 #include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
 
-//структура з параметрами
+//СЃС‚СЂСѓРєС‚СѓСЂР° Р· РїР°СЂР°РјРµС‚СЂР°РјРё
 
-typedef struct Random2D {
+typedef struct Random2 {
 
-    unsigned a, c, m, s0, s_n;
+    unsigned a;
+    unsigned c;
+    unsigned m;
+    unsigned s0;
+    unsigned s_n;
     double r_n;
 
-}Random2D;
+}Random2;
 
-//функція перевірки на взаємну простоту
-int isCoprime(int a, int b);
-
-//функція генерування параметрів структури та перевірка умов
-//зазначенних в задачі
-void generate_numbers_Random2D(Random2D* self);
-
-//наступний член для натуральних чисел
-unsigned next_s_n(Random2D* self);
-
-//наступний член для дійсних чисел
-double next_r_n(Random2D* self);
-
-//функція генерування цілого ч-ла
-int generate_integer(Random2D* self);
-
-//генерування дійсного ч-ла
-double generate_real(Random2D* self);
-
-//генерування -вимірного вектора з дійсних чисел
-double* generate_vector(Random2D* self, unsigned n);
-
-//обчислення коеф-ту кореляції між двома масивами дійсних чисел
-double corel_coef(double* X, double* Y, unsigned n, FILE* fout);
-
-//обчислення об'єму n-вимірної сфери
-double sph_Monte_Carlo(Random2D* self, unsigned N, FILE* fout);
-
-//записати результат в файл та вивести (ціле)
+//Р·Р°РїРёСЃР°С‚Рё СЂРµР·СѓР»СЊС‚Р°С‚ РІ С„Р°Р№Р» С‚Р° РІРёРІРµСЃС‚Рё (С†С–Р»Рµ)
 void print_integer(FILE* fout, const char* text, int num);
 
-//записати результат в файл та вивести (дійсне)
+//Р·Р°РїРёСЃР°С‚Рё СЂРµР·СѓР»СЊС‚Р°С‚ РІ С„Р°Р№Р» С‚Р° РІРёРІРµСЃС‚Рё (РґС–Р№СЃРЅРµ)
 void print_double(FILE* fout, const char* text, double num);
 
+//С„СѓРЅРєС†С–СЏ РїРµСЂРµРІС–СЂРєРё РЅР° РІР·Р°С”РјРЅСѓ РїСЂРѕСЃС‚РѕС‚Сѓ
+int isCoprime(int a, int b);
+
+//С„СѓРЅРєС†С–СЏ РіРµРЅРµСЂСѓРІР°РЅРЅСЏ РїР°СЂР°РјРµС‚СЂС–РІ СЃС‚СЂСѓРєС‚СѓСЂРё С‚Р° РїРµСЂРµРІС–СЂРєР° СѓРјРѕРІ
+//Р·Р°Р·РЅР°С‡РµРЅРЅРёС… РІ Р·Р°РґР°С‡С–
+void generate_numbers_Random2(Random2* self);
+
+//РіРµРЅРµСЂСѓРІР°РЅРЅСЏ -РІРёРјС–СЂРЅРѕРіРѕ РІРµРєС‚РѕСЂР° Р· РґС–Р№СЃРЅРёС… С‡РёСЃРµР»
+double* generate_vector(Random2* self, unsigned n);
+
+//РѕР±С‡РёСЃР»РµРЅРЅСЏ РєРѕРµС„-С‚Сѓ РєРѕСЂРµР»СЏС†С–С— РјС–Р¶ РґРІРѕРјР° РјР°СЃРёРІР°РјРё РґС–Р№СЃРЅРёС… С‡РёСЃРµР»
+double corel_coef(double* X, double* Y, unsigned n, FILE* fout);
+
+//РЅР°СЃС‚СѓРїРЅРёР№ С‡Р»РµРЅ РґР»СЏ РЅР°С‚СѓСЂР°Р»СЊРЅРёС… С‡РёСЃРµР»
+unsigned next_s_n(Random2* self);
+
+//РЅР°СЃС‚СѓРїРЅРёР№ С‡Р»РµРЅ РґР»СЏ РґС–Р№СЃРЅРёС… С‡РёСЃРµР»
+double next_r_n(Random2* self);
+
+//С„СѓРЅРєС†С–СЏ РіРµРЅРµСЂСѓРІР°РЅРЅСЏ С†С–Р»РѕРіРѕ С‡-Р»Р°
+int generate_integer(Random2* self);
+
+//РіРµРЅРµСЂСѓРІР°РЅРЅСЏ РґС–Р№СЃРЅРѕРіРѕ С‡-Р»Р°
+double generate_real(Random2* self);
+
+
+//РѕР±С‡РёСЃР»РµРЅРЅСЏ РѕР±'С”РјСѓ n-РІРёРјС–СЂРЅРѕС— СЃС„РµСЂРё
+double sph_Monte_Carlo(Random2* self, unsigned N, FILE* fout);
+
+
+
 #endif
+
+
 
